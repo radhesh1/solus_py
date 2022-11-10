@@ -4,8 +4,17 @@ import math
 
 def update():
     global t
-    t = t + 0.02
+    t = t + 0.0002
     angle = math.pi*40/180
+    mercury_factor=365/88
+    venus_factor=365/225
+    earth_factor=365/365
+    mars_factor=365/687
+    jupiter_factor=365/4333
+    saturn_factor=365/10759
+    uranus_factor=365/30687
+    neptune_factor=365/10690
+    pluto_factor=365/90520
     
     #rotate around the sun
     # radius variable is the distance between the planet and the sun
@@ -13,54 +22,54 @@ def update():
     # there are 9 planets in all around the sun so 360/9 = 40, each planet is 40 degrees apart, angle has radians
     # variable t is a time variable, i.e. when taking cos, sine of t, each frame of planets will change positions according to the coordinates calculated in t
     # this planet I give distance for being lazy
+    
+    radius_1 = 5.22
+    mercury.x = math.cos(mercury_factor*t)*radius_1
+    mercury.z = math.sin(mercury_factor*t)*radius_1
+    
+    radius_2 = 10.81
+    venus.x = math.cos(venus_factor*t+angle)*radius_2
+    venus.z = math.sin(venus_factor*t+angle)*radius_2
 
-    radius_1 = 2
-    mercury.x = math.cos(t)*radius_1
-    mercury.z = math.sin(t)*radius_1
+    radius_3 = 14.72
+    earth.x = math.cos(earth_factor*t+angle*2)*radius_3
+    earth.z = math.sin(earth_factor*t+angle*2)*radius_3
 
-    radius_2 = 5.2
-    venus.x = math.cos(t+angle)*radius_2
-    venus.z = math.sin(t+angle)*radius_2
+    radius_4 = 21.78
+    mars.x = math.cos(mars_factor*t+angle*3)*radius_4
+    mars.z = math.sin(mars_factor*t+angle*3)*radius_4
 
-    radius_3 = 3.6
-    earth.x = math.cos(t+angle*2)*radius_3
-    earth.z = math.sin(t+angle*2)*radius_3
+    radius_5 = 77.07
+    jupiter.x = math.cos(jupiter_factor*t+angle*4)*radius_5
+    jupiter.z = math.sin(jupiter_factor*t+angle*4)*radius_5
 
-    radius_4 = 7.6
-    mars.x = math.cos(t+angle*3)*radius_4
-    mars.z = math.sin(t+angle*3)*radius_4
+    radius_6 = 142.7
+    saturn.x = math.cos(saturn_factor*t+angle*5)*radius_6
+    saturn.z = math.sin(saturn_factor*t+angle*5)*radius_6
 
-    radius_5 = 2.8
-    jupiter.x = math.cos(t+angle*4)*radius_5
-    jupiter.z = math.sin(t+angle*4)*radius_5
+    radius_7 = 275.2
+    uranus.x = math.cos(uranus_factor**t+angle*6)*radius_7
+    uranus.z = math.sin(uranus_factor*t+angle*6)*radius_7
 
-    radius_6 = 6
-    saturn.x = math.cos(t+angle*5)*radius_6
-    saturn.z = math.sin(t+angle*5)*radius_6
+    radius_8 = 452.9
+    neptune.x = math.cos(neptune_factor*t+angle*7)*radius_8
+    neptune.z = math.sin(neptune_factor*t+angle*7)*radius_8
 
-    radius_7 = 8
-    uranus.x = math.cos(t+angle*6)*radius_7
-    uranus.z = math.sin(t+angle*6)*radius_7
-
-    radius_8 = 4.4
-    neptune.x = math.cos(t+angle*7)*radius_8
-    neptune.z = math.sin(t+angle*7)*radius_8
-
-    radius_9 = 6.8
-    pluto.x = math.cos(t+angle*8)*radius_9
-    pluto.z = math.sin(t+angle*8)*radius_9
+    radius_9 = 590
+    pluto.x = math.cos(pluto_factor*t+angle*8)*radius_9
+    pluto.z = math.sin(pluto_factor*t+angle*8)*radius_9
 
     #tự xoay quanh trục 
-    sun.rotation_y += time.dt*20
-    mercury.rotation_y += time.dt*20
-    earth.rotation_y += time.dt*20
-    venus.rotation_y += time.dt*20
-    mars.rotation_y += time.dt*20
-    jupiter.rotation_y += time.dt*20
-    saturn.rotation_y += time.dt*20
-    uranus.rotation_y += time.dt*20
-    neptune.rotation_y += time.dt*20
-    pluto.rotation_y += time.dt*20
+    sun.rotation_y += time.dt*5
+    mercury.rotation_y += time.dt*10
+    earth.rotation_y += time.dt*-10
+    venus.rotation_y += time.dt*10
+    mars.rotation_y += time.dt*10
+    jupiter.rotation_y += time.dt*10
+    saturn.rotation_y += time.dt*10
+    uranus.rotation_y += time.dt*10
+    neptune.rotation_y += time.dt*10
+    pluto.rotation_y += time.dt*10
 
 class Sky(Entity):
     def __init__(self):
@@ -68,7 +77,7 @@ class Sky(Entity):
             model = 'sphere',
             texture = 'textures/StarsMap_2500x1250.jpg',
             parent = scene,
-            scale = 150,
+            scale = 2000,
             double_sided = True
         )
 
